@@ -1,0 +1,23 @@
+0.1.5:
+    * Few speed optimizations
+    
+0.1.4:
+    * Fixed 'const' declarations 
+
+csa19:
+    * CP866 support
+
+csa18: 
+    * Fixed error in binary search algorithm 
+    * UTF-8 support integrated
+    * Improoved algorithm and extended statistics tables are implemented
+    * Support for upercase phrases
+    * The probability of right answers was rised.
+	- Only 0.3% of mistakes distinguishing between KOI8-R and CP1251
+csa8: 
+    * Changed to support limited size strings 
+
+csa:
+    * Original idea was stealed from GPPL's (http://gppl.terminal.ru) 
+    autorecode-xmms1.2.7 patch
+    * Can autodetect CP1251 and KOI8-R lowercase phrases

@@ -1,0 +1,12 @@
+#! /bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: doit <file name>"
+    exit
+fi
+
+# In some CP866 texts used "Yo" and "N" simbols from CP1251 encoding. This fixes it.
+dos2unix -U $1
+cat $1 | sed -e "s/¸/ñ/g" | sed -e "s/¹/N/g;s/°/ø/g" | iconv -f CP866 -t KOI8-R > $1.koi
+cat $1 | sed -e "s/¸/ñ/g" | sed -e "s/¹/ü/g;s/°/ø/g" | iconv -f CP866 -t CP1251 > $1.win
+cat $1 | sed -e "s/¸/ñ/g" | sed -e "s/¹/ü/g;s/°/ø/g" | iconv -f CP866 -t UTF-8 > $1.utf
