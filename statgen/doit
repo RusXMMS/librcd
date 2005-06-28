@@ -9,29 +9,26 @@ fi
 dos2unix -U $1
 
 cat $1 | sed -e "s/¸/ñ/g;s/¹/N/g;s/°/ø/g" | iconv -f CP866 -t KOI8-R > $1.koi
-cat $1 | sed -e "s/¸/ñ/g;s/¹/N/g;s/°/ø/g" | iconv -f CP866 -t CP1251 > $1.win
-cat $1 | sed -e "s/¸/ñ/g;s/¹/N/g;s/°/ø/g"  > $1.alt
-
+#cat $1 | sed -e "s/¸/ñ/g;s/¹/N/g;s/°/ø/g" | iconv -f CP866 -t CP1251 > $1.win
+#cat $1 | sed -e "s/¸/ñ/g;s/¹/N/g;s/°/ø/g"  > $1.alt
 #cat $1 | sed -e "s/¸/ñ/g;s/¹/ü/g;s/°/ø/g" | iconv -f CP866 -t UTF-8 > $1.utf
 
 export LC_CTYPE="ru_RU.KOI8-R"
-./generate $1.koi koi > russian_table.h  2> header1.tmp
-./generate $1.koi win >> russian_table.h  2> header2.tmp
-./generate $1.koi alt >> russian_table.h  2> header3.tmp
-#./generate $1.win win >> russian_table.h 2> header2.tmp
-#./generate $1 alt >> russian_table.h 2> header3.tmp
+./generate $1.koi koi > table.tmp.h  2> header1.tmp
+./generate $1.koi win >> table.tmp.h  2> header2.tmp
+./generate $1.koi alt >> table.tmp.h  2> header3.tmp
 
 cmp header1.tmp header2.tmp
 if [ $? -ne 0 ]; then
     echo "Different number items in win & koi tables. Strange..."
-    rm -f russian_table.h
+    rm -f table.tmp.h
 else
     cmp header1.tmp header3.tmp
     if [ $? -ne 0 ]; then
 	echo "Different number items in win & koi tables. Strange..."
-	rm -f russian_table.h
+	rm -f table.tmp.h
     else
-	cat header1.tmp >> russian_table.h
+	cat header1.tmp >> table.tmp.h
     fi
 fi
 

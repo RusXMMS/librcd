@@ -1,3 +1,3 @@
 SUBDIRS = src
 
-EXTRA_DIST = example statgen librcd.spec
+EXTRA_DIST = examples statgen librcd.spec

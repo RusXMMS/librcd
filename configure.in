@@ -2,9 +2,9 @@ dnl Process this file with autoconf to produce a configure script.
 AC_INIT(src/librcd.c)
 
 PACKAGE=librcd
-LIBRCD_VERSION_MAJOR=0
-LIBRCD_VERSION_MINOR=1
-LIBRCD_VERSION_SUBMINOR=5
+LIBRCD_VERSION_MAJOR=`cat VERSION | sed -e s/CVS// | cut -d . -f 1 | sed -e s/^$/0/`
+LIBRCD_VERSION_MINOR=`cat VERSION | sed -e s/CVS// | cut -d . -f 2 | sed -e s/^$/0/`
+LIBRCD_VERSION_SUBMINOR=`cat VERSION | sed -e s/CVS// | cut -d . -f 3 | sed -e s/^$/0/`
 LIBRCD_VERSION=$LIBRCD_VERSION_MAJOR.$LIBRCD_VERSION_MINOR.$LIBRCD_VERSION_SUBMINOR
 VERSION=$LIBRCD_VERSION
 LIBRCD_VERSION_INFO=`echo $LIBRCD_VERSION | awk -F. '{ printf "%d:%d:%d", $1+$2, $3, $2 }'`
@@ -36,4 +36,4 @@ AC_C_CONST
 
 dnl Checks for library functions.
 
-AC_OUTPUT(src/Makefile Makefile librcd.spec)
+AC_OUTPUT(src/Makefile examples/Makefile statgen/Makefile Makefile librcd.spec)

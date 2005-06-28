@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#define _LIBRCD_C
 #include "librcd.h"
 
 #define NF_VALUE -2
@@ -254,10 +255,16 @@ static int check_utf8(const unsigned char *buf, int len) {
 }
 
 
-enum russian_charsets get_russian_charset(const char *buf,int len) {
+
+rcd_russian_charset rcdGetRussianCharset(const char *buf,int len) {
     long l;
 
     l = STRNLEN(buf,len);
     if (check_utf8(buf,l)>1) return RUSSIAN_CHARSET_UTF8;
     return is_win_charset2(buf,l);
+}
+
+/* Compatibility */
+rcd_russian_charset get_russian_charset(const char *buf,int len) {
+    return rcdGetRussianCharset(buf, len);
 }

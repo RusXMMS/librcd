@@ -5,16 +5,17 @@
 extern "C" {
 #endif
 
-enum russian_charsets {
+enum rcd_russian_charset_t {
     RUSSIAN_CHARSET_WIN = 0,
     RUSSIAN_CHARSET_KOI,
     RUSSIAN_CHARSET_UTF8,
     RUSSIAN_CHARSET_ALT
 };
+typedef enum rcd_russian_charset_t rcd_russian_charset;
 
 
 /*
-get_russian_charset
+rcdGetRussianCharset
     Detects encoding of russian text passed in buf variable. Support 
     UTF-8, CP1251, CP866 and KOI8-R encoding.
     
@@ -29,10 +30,16 @@ get_russian_charset
 	3 - CP866
 */
 
-enum russian_charsets get_russian_charset(const char *buf,int len);
+rcd_russian_charset rcdGetRussianCharset(const char *buf, int len);
 
 #ifdef __cplusplus
 }
 #endif
+
+/* Backward compatibility */
+#ifndef _LIBRCD_C
+# define russian_charsets rcd_russian_charset
+# define get_russian_charset rcdGetRussianCharset
+#endif /* ! _LIBRCD_C */
 
 #endif /* _LIBRCD_H */

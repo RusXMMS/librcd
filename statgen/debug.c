@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define _AUTO_DEBUG
-#include "charset_auto_russian.h"
+#include "librcd.tmp.c"
 
 
 main(int argc, char *argv[]) {
@@ -28,6 +28,6 @@ main(int argc, char *argv[]) {
 	if (len<5) continue;
 	else word[len+1]=0;
 
-	autocharset_russian_uc(word+st,len+1-st);
+	rcdGetRussianCharset(word+st,len+1-st);
     }
 }

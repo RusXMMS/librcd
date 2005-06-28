@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "charset_auto_russian.h"
+#include "librcd.tmp.c"
 
 main(int argc, char *argv[]) {
     FILE *f;
@@ -37,11 +37,7 @@ main(int argc, char *argv[]) {
 	}
 	if (strlen(phrase)<5) continue;
 
-	a[autocharset_russian_uc(phrase,strlen(phrase))]++;
-//	a[autocharset_russian(phrase,strlen(phrase))]++;
-
-//	a[autocharset_russian(word+st,len+1-st)]++;
-//	puts(word);
+	a[rcdGetRussianCharset(phrase,0)]++;
     }
 
     printf("Win: %lu, Koi: %lu, Alt: %lu, UTF: %lu\n",a[0],a[1],a[3],a[2]);
@@ -70,9 +66,7 @@ main(int argc, char *argv[]) {
 	}
 	if (strlen(phrase)<5) continue;
 
-	i=autocharset_russian_uc(phrase,strlen(phrase));
-//	i=autocharset_russian(phrase,strlen(phrase));
-//	i=autocharset_russian(word+st,len+1-st);
+	i=rcdGetRussianCharset(phrase,0);
 	if (i!=max) {
 	    if (i==0) printf("Win: %s\n",phrase);
 	    else if (i==1) printf("Koi: %s\n",phrase);
