@@ -3,14 +3,14 @@
 #include <librcd.h>
 
 main() {
-    enum russian_charsets res;
+    rcd_russian_charset res;
     char buf[255];
     int l;
     
     while (fgets(buf,255,stdin)) {
 	if (strlen(buf)<2) break;
 	
-	res = get_russian_charset(buf,0);
+	res = rcdGetRussianCharset(buf,0);
 	switch(res) {
 	    case RUSSIAN_CHARSET_WIN:
 		printf("CP1251: ");
