@@ -38,7 +38,7 @@ rcd_russian_charset rcdGetRussianCharset(const char *buf, int len);
 
 /* Backward compatibility */
 #ifndef _LIBRCD_C
-# define russian_charsets rcd_russian_charset
+# define russian_charsets rcd_russian_charset_t
 # define get_russian_charset rcdGetRussianCharset
 #endif /* ! _LIBRCD_C */
 
