@@ -1,4 +1,4 @@
-Summary: Russian Charset Detection Library
+Summary: Russian Encoding Detection Library
 Name: librcd
 Version: @VERSION@
 Release: csa
@@ -14,7 +14,7 @@ Prefix: %{_prefix}
 Docdir: %{_docdir}
 
 %description
-Automatic charset detection library for russian/ukrainian languages. Optimized
+Automatic encoding detection library for russian/ukrainian languages. Optimized
 for very small words and phrases.
 
 %package devel 
@@ -23,7 +23,7 @@ Group: Development/Libraries
 Requires: librcd = %{version}
 
 %description devel
-Automatic charset detection library for russian/ukrainian languages. Optimized
+Automatic encoding detection library for russian/ukrainian languages. Optimized
 for very small words and phrases.
 
 %prep
