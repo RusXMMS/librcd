@@ -7,8 +7,6 @@
 #define max(a,b) ((a>b)?a:b)
 #define min(a,b) ((a<b)?a:b)
 #define bit(i) (1<<i)
-#define STRNLEN(str,n) (n?strnlen(str,n):strlen(str))
-
 
 typedef struct lng_stat2 {
   unsigned char a;
@@ -259,7 +257,7 @@ static int check_utf8(const unsigned char *buf, int len) {
 rcd_russian_charset rcdGetRussianCharset(const char *buf,int len) {
     long l;
 
-    l = STRNLEN(buf,len);
+    l = len?len:strlen(buf);
     if (check_utf8(buf,l)>1) return RUSSIAN_CHARSET_UTF8;
     return is_win_charset2(buf,l);
 }

@@ -1,3 +1,6 @@
+0.1.7:
+    * Don't use strnlen
+
 0.1.6:
     * Function name is changed to conform LibRCC naming conventions
     * Other minor changes
