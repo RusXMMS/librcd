@@ -34,7 +34,7 @@ for very small words and phrases.
 
 %install
 %makeinstall prefix=$RPM_BUILD_ROOT%{prefix} 
-rm -f $RPM_BUILD_ROOT%{prefix}/lib/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -46,12 +46,13 @@ rm -rf $RPM_BUILD_ROOT
 %files 
 %defattr(-, root, root)
 %doc AUTHORS ChangeLog NEWS README COPYING
-%{prefix}/lib/lib*.so.*
+%{_libdir}/lib*.so.*
+
 
 %files devel
 %defattr(-, root, root)  
-%{prefix}/include/
-%{prefix}/lib/lib*.so
-%{prefix}/lib/*.a
+%{_includedir}
+%{_libdir}/lib*.so
+%{_libdir}/*.a
 
 %changelog
