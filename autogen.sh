@@ -3,6 +3,6 @@
 
 rm -f configure
 aclocal
-libtoolize --force
-automake
+libtoolize --copy --force
+automake --copy --add-missing
 autoconf
