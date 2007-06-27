@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#include "../config.h"
+
 #define _LIBRCD_C
 #include "librcd.h"
 
@@ -252,6 +254,36 @@ static int check_utf8(const unsigned char *buf, int len) {
     return res;
 }
 
+/* In russian language we will have whole word consisting of >127 characters,
+with latin languages there is in every word besides umlauts should exist at
+least one standard latin character with code < 127. */
+static int check_latin(const unsigned char *buf, int len) {
+    long i;
+    int word = 0;
+    int latin = 0;
+    
+    for (i=0;i<len;i++) {
+	if (buf[i]<128) {
+	    if (((buf[i]>='a')&&(buf[i]<='z'))||((buf[i]>='A')&&(buf[i]<='Z'))) {
+		    // Latin character inside a word, so it isn't cyrillic word
+		latin++;
+	    } else {
+		    // Treating as a word separator.
+		if (word > 0) {
+		    if (!latin) return 0;
+		    if ((word/latin)>4) return 0;
+		}
+
+		word = 0;
+		latin = 0;
+	    }
+	} else {
+		// Could be cyrillic word
+	    if (word>=0) word++;
+	}
+    }
+    return 1;
+}
 
 
 rcd_russian_charset rcdGetRussianCharset(const char *buf,int len) {
@@ -259,6 +291,9 @@ rcd_russian_charset rcdGetRussianCharset(const char *buf,int len) {
 
     l = len?len:strlen(buf);
     if (check_utf8(buf,l)>1) return RUSSIAN_CHARSET_UTF8;
+#ifdef DETECT_LATIN
+    if (check_latin(buf,l)) return RUSSIAN_CHARSET_LATIN;
+#endif /* DETECT_LATIN */
     return is_win_charset2(buf,l);
 }
 

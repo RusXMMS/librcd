@@ -9,7 +9,8 @@ enum rcd_russian_charset_t {
     RUSSIAN_CHARSET_WIN = 0,
     RUSSIAN_CHARSET_KOI,
     RUSSIAN_CHARSET_UTF8,
-    RUSSIAN_CHARSET_ALT
+    RUSSIAN_CHARSET_ALT,
+    RUSSIAN_CHARSET_LATIN
 };
 typedef enum rcd_russian_charset_t rcd_russian_charset;
 
