@@ -259,29 +259,36 @@ with latin languages there is in every word besides umlauts should exist at
 least one standard latin character with code < 127. */
 static int check_latin(const unsigned char *buf, int len) {
     long i;
-    int word = 0;
+    int cyr = 0;
     int latin = 0;
     
     for (i=0;i<len;i++) {
 	if (buf[i]<128) {
 	    if (((buf[i]>='a')&&(buf[i]<='z'))||((buf[i]>='A')&&(buf[i]<='Z'))) {
-		    // Latin character inside a word, so it isn't cyrillic word
+		    // Latin character inside a word, so it probably isn't cyrillic word
 		latin++;
 	    } else {
 		    // Treating as a word separator.
-		if (word > 0) {
+		if (cyr > 0) {
 		    if (!latin) return 0;
-		    if ((word/latin)>4) return 0;
+		    if (cyr>latin) return 0;
 		}
 
-		word = 0;
+		cyr = 0;
 		latin = 0;
 	    }
 	} else {
 		// Could be cyrillic word
-	    if (word>=0) word++;
+	    cyr++;
 	}
     }
+    
+    if (cyr > 0) {
+	if (!latin) return 0;
+	if (cyr>latin) return 0;
+    }
+//    printf("C%u:L%u\n",cyr,latin);
+
     return 1;
 }
 
@@ -296,6 +303,15 @@ rcd_russian_charset rcdGetRussianCharset(const char *buf,int len) {
 #endif /* DETECT_LATIN */
     return is_win_charset2(buf,l);
 }
+
+/*
+rcd_russian_charset rcdGetRussianCharset(const char *buf,int len) {
+    int res;
+    res = rcdGetRussianCharset1(buf, len);
+    printf("%u: %s\n", res, (buf&&!len)?buf:"null");
+    return res;
+}
+*/
 
 /* Compatibility */
 rcd_russian_charset get_russian_charset(const char *buf,int len) {

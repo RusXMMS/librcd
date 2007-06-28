@@ -29,6 +29,7 @@ rcdGetRussianCharset
 	1 - KOI8-R
 	2 - UTF8
 	3 - CP866
+	4 - ISO8859-1
 */
 
 rcd_russian_charset rcdGetRussianCharset(const char *buf, int len);
