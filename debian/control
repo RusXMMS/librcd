@@ -1,0 +1,22 @@
+Source: librcd
+Priority: extra
+Maintainer: Ivan Borzenkov <ivan1986@list.ru>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.7.3
+Section: libs
+Homepage: http://rusxmms.sourceforge.net/
+
+Package: librcd
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Russian Charset Detection Library
+ Library for autodection charset of russian text
+
+Package: librcd-dev
+Section: libdevel
+Architecture: any
+Depends: librcd (= ${binary:Version})
+Description: Russian Charset Detection Library - dev files
+ Library for autodection charset of russian text
+
