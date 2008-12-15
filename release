@@ -36,9 +36,9 @@ cp -a * $RDIR/$rname
     cd $RDIR/$rname
     ./autogen.sh
     ./configure
+    make clean -C examples distclean distclean-am
+    make clean -C statgen distclean distclean-am
     make clean distclean distclean-am
-    make clean -C examples
-    make clean -C statgen
     rm -rf autom4te*.cache
     rm -rf "{arch}"
     rm -rf `find . -name .arch-ids`
