@@ -20,3 +20,7 @@ librcd.spec
 libtool
 ltmain.sh
 stamp-h1
+ascii
+generate
+upper
+example
