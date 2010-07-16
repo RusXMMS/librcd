@@ -24,3 +24,6 @@ ascii
 generate
 upper
 example
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
