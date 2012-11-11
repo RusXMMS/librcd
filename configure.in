@@ -45,4 +45,4 @@ AC_C_CONST
 
 dnl Checks for library functions.
 
-AC_OUTPUT(src/Makefile examples/Makefile statgen/Makefile Makefile librcd.spec)
+AC_OUTPUT(src/Makefile examples/Makefile statgen/Makefile Makefile librcd.spec librcd.pc)
