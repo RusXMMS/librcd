@@ -42,6 +42,8 @@ cp -a * $RDIR/$rname
     find . -name CMakeFiles -print0 | xargs -0 rm -rf
     find . -name CMakeCache.txt -print0 | xargs -0 rm -rf
     find . -name cmake_install.cmake -print0 | xargs -0 rm -rf
+    find . -name "*~" -print0 | xargs -0 rm -rf
+
     rm -rf autom4te*.cache
     rm -rf "{arch}"
     rm -rf `find . -name .arch-ids`
