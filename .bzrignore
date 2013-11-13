@@ -28,3 +28,6 @@ CMakeFiles
 CMakeCache.txt
 cmake_install.cmake
 librcd.pc
+ar-lib
+m4
+compile
