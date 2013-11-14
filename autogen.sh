@@ -37,9 +37,9 @@ LIBTOOLIZE_FLAGS=--copy
 
 if test ! -d /usr/local/share/aclocal
 then
-  ACLOCAL_FLAGS=''
+  ACLOCAL_FLAGS='-I m4'
 else
-  ACLOCAL_FLAGS='-I /usr/local/share/aclocal'
+  ACLOCAL_FLAGS='-I m4 -I /usr/local/share/aclocal'
 fi
 AUTOHEADER_FLAGS=-Wall
 AUTOMAKE_FLAGS='--add-missing --copy -Wall'
