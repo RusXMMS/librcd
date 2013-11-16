@@ -34,7 +34,8 @@ cp -a * $RDIR/$rname
 
 (
     cd $RDIR/$rname
-    ./autogen.sh
+    rm -f missing compile depcomp install-sh mkinstalldirs ar-lib
+    WANT_AUTOMAKE=1.9 WANT_AUTOCONF=2.5 ./autogen.sh
     ./configure
     make clean -C examples distclean distclean-am
     make clean -C statgen distclean distclean-am

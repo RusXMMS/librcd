@@ -12,7 +12,6 @@ LIBRCD_VERSION_MAJOR=`cat VERSION | sed -e s/CVS// | cut -d . -f 1 | sed -e s/^$
 LIBRCD_VERSION_MINOR=`cat VERSION | sed -e s/CVS// | cut -d . -f 2 | sed -e s/^$/0/`
 LIBRCD_VERSION_SUBMINOR=`cat VERSION | sed -e s/CVS// | cut -d . -f 3 | sed -e s/^$/0/`
 LIBRCD_VERSION=$LIBRCD_VERSION_MAJOR.$LIBRCD_VERSION_MINOR.$LIBRCD_VERSION_SUBMINOR
-VERSION=$LIBRCD_VERSION
 LIBRCD_VERSION_INFO=`echo $LIBRCD_VERSION | awk -F. '{ printf "%d:%d:%d", $1+$2, $3, $2 }'`
 
 AC_SUBST(LIBRCD_VERSION)
